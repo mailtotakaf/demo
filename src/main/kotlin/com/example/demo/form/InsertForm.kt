@@ -6,13 +6,13 @@ class InsertForm {
     //import文など少々
 //    @NotNull(message = "登録には歌手名の入力は必須です")
 //    @NotNull
-    var artistName: String? = null
+    var title: String? = null
 
 //    @NotNull(message = "登録には曲名の入力は必須です")
 //    @NotNull
-    var title: String? = null
-    var wordsWriter: String? = null
-    var musicComposer: String? = null
-    var lyric: String? = null
-    var url: String? = null //セッター、ゲッター、コンストラクタ
+    var textArea: String? = null
+    var mail: String? = null
+//    var musicComposer: String? = null
+//    var lyric: String? = null
+//    var url: String? = null //セッター、ゲッター、コンストラクタ
 }

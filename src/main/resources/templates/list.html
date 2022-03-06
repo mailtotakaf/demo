@@ -8,22 +8,22 @@
 <h1 th:text="${title}">title</h1>
 <h1 th:text="${redirectTitle}">title</h1>
 <form method="GET" action="#" th:action="@{/lyric/select}" th:object="${searchForm}">
-    <label for="artistName">Artist Name:</label>
+    <label for="artistName">検索</label>
     <input id="artistName" name="artistName" type="text" th:value="*{artistName}">
     <div th:if="${#fields.hasErrors('artistName')}" th:errors="*{artistName}"></div>
     <input type="submit" value="search">
 </form>
 
-<h1 th:text="${title}">title</h1>
+<!--<h1 th:text="${title}">title</h1>-->
 <p th:text="${noResultMessage}"></p>
-<table th:if="${lyricList}">
+<table th:if="${postList}">
     <tr>
-        <th>Artist Name</th><th>song title</th><th>lyric</th>
+        <th>タイトル</th><th>内容</th><th>mail</th>
     </tr>
-    <tr th:each="lyric:${lyricList}">
-        <td th:text="${lyric.artist}"></td>
-        <td th:text="${lyric.title}"></td>
-        <td th:text="${lyric.lyric}"></td>
+    <tr th:each="post:${postList}">
+        <td th:text="${post.title}"></td>
+        <td th:text="${post.textArea}"></td>
+        <td th:text="${post.mail}"></td>
     </tr>
 </table>
 <a th:href="@{'/lyric/form'}">新規登録</a>
