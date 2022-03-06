@@ -27,6 +27,8 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	// https://mvnrepository.com/artifact/postgresql/postgresql
 //	implementation ("postgresql:postgresql:9.1-902.jdbc4")
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
+	implementation("org.springframework.boot:spring-boot-starter-validation:2.6.4")
 }
 
 tasks.withType<KotlinCompile> {

@@ -29,7 +29,6 @@ class testController {
         return "form.html"
     }
 
-    //SearchFormクラスのvalidation anotationに引っかかるとresultにエラーが入る
     @GetMapping("/select")
     fun select(@Validated searchForm: SearchForm, result: BindingResult, model: Model): String {
         if (result.hasErrors()) {
@@ -47,6 +46,7 @@ class testController {
 
     /**
      * 新規登録
+     * insertFormクラスのvalidation anotationに引っかかるとresultにエラーが入る
      */
     @PostMapping("/insert")
     fun insert(
@@ -57,6 +57,9 @@ class testController {
     ): String {
         if (result.hasErrors()) {
             model.addAttribute("title", "Error Page")
+            return "form.html"
+        } else if (insertForm.title.isNullOrEmpty()){
+            model.addAttribute("message", "※入力必須項目")
             return "form.html"
         }
 

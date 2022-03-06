@@ -9,7 +9,7 @@
 <form method="POST" action="#" th:action="@{/lyric/insert}" th:object="${insertForm}">
     <div>
     <label for="title">タイトル</label>
-    <input id="title" name="title" type="text" th:value="*{title}">
+    <input id="title" name="title" type="text" th:value="*{title}"><span th:text="${message}"></span>
     <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
     </div>
     <div>
