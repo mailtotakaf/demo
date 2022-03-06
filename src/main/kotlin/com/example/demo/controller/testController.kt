@@ -23,11 +23,9 @@ class testController {
     @Autowired
     private lateinit var repository: testRepository
 
-    //modelのキーに"insertCompleteMessage"があればそのまま使用、なければadd
     @GetMapping("/form")
     fun form(model: Model, @ModelAttribute("insertCompleteMessage") message: String?): String {
         model.addAttribute("title", "artist name")
-        //templateフォルダ内の該当ファイルを返す
         return "form.html"
     }
 
@@ -47,7 +45,9 @@ class testController {
         return "list.html"
     }
 
-    //PRGのためにリダイレクトとフラッシュスコープ(リクエスト1回終わると消える属性)を使用
+    /**
+     * 新規登録
+     */
     @PostMapping("/insert")
     fun insert(
         @Validated insertForm: InsertForm,
@@ -59,15 +59,14 @@ class testController {
             model.addAttribute("title", "Error Page")
             return "form.html"
         }
-        // まずは入力フォームは一つ。DAOはリスト形式のため、要素が1つのリストにする
+
         val post = convertInsertForm(insertForm)
         repository.insertSongs(post)
-        //@GetMapping("/form")にリダイレクト。フラッシュスコープ設定。
+        //フラッシュスコープ設定、リダイレクト(PRG)
         redirectAttributes.addFlashAttribute("insertCompleteMessage", "insert complete")
         return "redirect:select"
     }
 
-    //上記の引数にSearchFormが入ってなくても勝手にmodelに入れてくれる。メソッド名は何でもいい。
     @ModelAttribute
     fun setSearchForm(): SearchForm {
         return SearchForm()

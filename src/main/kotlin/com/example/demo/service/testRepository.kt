@@ -27,7 +27,6 @@ class testRepository {
             if (serchStr.isNullOrEmpty()) {
                 resultList = jdbcTemplate.queryForList(sql.toString())
             } else {
-//                sql.append(" and ( title like '%?%' or text_area like '%?%') ")
                 sql.append(" and ( title LIKE '%'||?||'%' or text_area LIKE '%'||?||'%') ")
 
                 resultList = jdbcTemplate.queryForList(sql.toString(), serchStr, serchStr)
