@@ -6,6 +6,15 @@
 </head>
 <body>
 <h1 th:text="${title}">title</h1>
+<h1 th:text="${redirectTitle}">title</h1>
+<form method="GET" action="#" th:action="@{/lyric/select}" th:object="${searchForm}">
+    <label for="artistName">Artist Name:</label>
+    <input id="artistName" name="artistName" type="text" th:value="*{artistName}">
+    <div th:if="${#fields.hasErrors('artistName')}" th:errors="*{artistName}"></div>
+    <input type="submit" value="search">
+</form>
+
+<h1 th:text="${title}">title</h1>
 <p th:text="${noResultMessage}"></p>
 <table th:if="${lyricList}">
     <tr>
@@ -17,4 +26,5 @@
         <td th:text="${lyric.lyric}"></td>
     </tr>
 </table>
+<a th:href="@{'/lyric/form'}">新規登録</a>
 </body>

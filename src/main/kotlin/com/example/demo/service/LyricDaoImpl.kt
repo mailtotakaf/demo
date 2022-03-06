@@ -9,7 +9,7 @@ import java.sql.PreparedStatement
 import java.sql.SQLException
 
 @Repository
-class LyricDaoImpl: LyricDao{
+class LyricDaoImpl : LyricDao {
 
     @Autowired
     private lateinit var jdbcTemplate: JdbcTemplate
@@ -17,8 +17,17 @@ class LyricDaoImpl: LyricDao{
     //指定歌手の曲情報を取得
     override fun getSongs(artistName: String?): List<Lyric> {
         // preparedStatementがSQLインジェクション対策になるので書き換えたいが、今回はこのまま。
-        val sql = "SELECT * FROM lyricTable WHERE artist='$artistName';"
-        val resultList = jdbcTemplate.queryForList(sql)
+//        val sql = "SELECT * FROM lyricTable WHERE artist='$artistName';"
+        var resultList:List<Map<String,Any?>> = mutableListOf()
+        var sql = StringBuilder()
+        sql.append("SELECT * FROM lyricTable WHERE 1=1 ")
+        if (artistName.isNullOrEmpty()) {
+            resultList = jdbcTemplate.queryForList(sql.toString())
+        } else {
+            sql.append(" and artist = ?")
+            resultList = jdbcTemplate.queryForList(sql.toString(), artistName)
+        }
+
         val list: MutableList<Lyric> = ArrayList()
         for (result in resultList) {
             val lyric = Lyric()

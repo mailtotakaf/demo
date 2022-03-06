@@ -65,7 +65,7 @@ class LyricController {
         lyricService.insertSongs(list)
         //@GetMapping("/form")にリダイレクト。フラッシュスコープ設定。
         redirectAttributes.addFlashAttribute("insertCompleteMessage", "insert complete")
-        return "redirect:form"
+        return "redirect:select"
     }
 
     //上記の引数にSearchFormが入ってなくても勝手にmodelに入れてくれる。メソッド名は何でもいい。

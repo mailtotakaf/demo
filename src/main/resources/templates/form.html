@@ -5,15 +5,14 @@
     <title th:text="${title}">Insert</title>
 </head>
 <body>
-<h1 th:text="${title}">title</h1>
-<h1 th:text="${redirectTitle}">title</h1>
-<form method="GET" action="#" th:action="@{/lyric/select}" th:object="${searchForm}">
-    <label for="artistName">Artist Name:</label>
-    <input id="artistName" name="artistName" type="text" th:value="*{artistName}">
-    <input id="dummy" name="dummy" type="text" th:value="*{dummy}">
-    <div th:if="${#fields.hasErrors('artistName')}" th:errors="*{artistName}"></div>
-    <input type="submit" value="search">
-</form>
+<!--<h1 th:text="${title}">title</h1>-->
+<!--<h1 th:text="${redirectTitle}">title</h1>-->
+<!--<form method="GET" action="#" th:action="@{/lyric/select}" th:object="${searchForm}">-->
+<!--    <label for="artistName">Artist Name:</label>-->
+<!--    <input id="artistName" name="artistName" type="text" th:value="*{artistName}">-->
+<!--    <div th:if="${#fields.hasErrors('artistName')}" th:errors="*{artistName}"></div>-->
+<!--    <input type="submit" value="search">-->
+<!--</form>-->
 <h1>曲登録</h1>
 <form method="POST" action="#" th:action="@{/lyric/insert}" th:object="${insertForm}">
     <label for="insArtistNameId">Artist Name:</label>
