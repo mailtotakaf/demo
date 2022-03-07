@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes
 
 
 @Controller
-@RequestMapping("/lyric")
+@RequestMapping("/sample")
 class testController {
 
     @Autowired
@@ -66,7 +66,7 @@ class testController {
         }
 
         val post = convertInsertForm(insertForm)
-        repository.insertSongs(post)
+        repository.insertPost(post)
         //フラッシュスコープ設定、リダイレクト(PRG)
 //        redirectAttributes.addFlashAttribute("insertCompleteMessage", "insert complete")
         return "redirect:select"

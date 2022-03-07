@@ -49,7 +49,7 @@ class testRepository {
     /**
      * 新規登録
      */
-    fun insertSongs(post:Post) {
+    fun insertPost(post:Post) {
         val sql = "INSERT INTO post (title,text_area,mail) VALUES (?,?,?)"
         try {
             jdbcTemplate.update(sql, post.title, post.textArea, post.mail)

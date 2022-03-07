@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>新規登録</h1>
-<form method="POST" action="#" th:action="@{/lyric/insert}" th:object="${insertForm}">
+<form method="POST" action="#" th:action="@{/sample/insert}" th:object="${insertForm}">
     <div>
     <label for="title">タイトル</label>
     <input id="title" name="title" type="text" th:value="*{title}"><span th:text="${message}"></span>
