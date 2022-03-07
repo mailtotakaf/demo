@@ -1,0 +1,22 @@
+version: "3"
+services:
+  app:
+    image: openjdk:11
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    volumes: 
+      - "./demo/build/libs/demo-0.0.1-SNAPSHOT.jar"
+    entrypoint: "java -Djava.security.egd=file:/dev/./urandom -jar /tmp/demo-0.0.1-SNAPSHOT.jar"
+  db:
+    image: postgres:11.5
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_DB: "test"
+    ports:
+      - "5432:5432"
+    volumes:
+      - "./docker/db/data:/var/lib/postgresql/data"
+      - "./docker/db/initdb:/docker-entrypoint-initdb.d"

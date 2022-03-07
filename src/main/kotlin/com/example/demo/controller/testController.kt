@@ -30,12 +30,14 @@ class testController {
     }
 
     @GetMapping("/select")
-    fun select(@Validated searchForm: SearchForm, result: BindingResult, model: Model): String {
-        if (result.hasErrors()) {
-            model.addAttribute("title", "Error Page")
-            return "form.html"
-        }
-        val list = repository.getPosts(searchForm.artistName)
+//    fun select(@Validated searchForm: SearchForm, result: BindingResult, model: Model): String {
+    fun select(model: Model): String {
+//        if (result.hasErrors()) {
+//            model.addAttribute("title", "Error Page")
+//            return "form.html"
+//        }
+//        val list = repository.getPosts(searchForm.artistName)
+        val list = repository.getPosts("")
         if (list.size != 0) {
             model.addAttribute("postList", list)
         } else {
@@ -66,7 +68,7 @@ class testController {
         val post = convertInsertForm(insertForm)
         repository.insertSongs(post)
         //フラッシュスコープ設定、リダイレクト(PRG)
-        redirectAttributes.addFlashAttribute("insertCompleteMessage", "insert complete")
+//        redirectAttributes.addFlashAttribute("insertCompleteMessage", "insert complete")
         return "redirect:select"
     }
 
