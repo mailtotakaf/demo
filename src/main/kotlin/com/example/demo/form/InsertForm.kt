@@ -11,4 +11,6 @@ class InsertForm {
 
     var textArea: String? = null
     var mail: String? = null
+
+    var gender:String = ""
 }

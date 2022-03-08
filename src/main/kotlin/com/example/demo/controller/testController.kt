@@ -1,6 +1,7 @@
 package com.example.demo.controller
 
 import com.example.demo.entity.Post
+import com.example.demo.form.CustomerForm
 import com.example.demo.form.InsertForm
 import com.example.demo.form.SearchForm
 import com.example.demo.service.testRepository
@@ -24,7 +25,16 @@ class testController {
     private lateinit var repository: testRepository
 
     @GetMapping("/form")
-    fun form(model: Model, @ModelAttribute("insertCompleteMessage") message: String?): String {
+    fun form(model: Model,
+             insertForm: InsertForm,
+             @ModelAttribute("insertCompleteMessage") message: String?): String {
+        var radio = mutableMapOf<String,String>()
+        radio.put("0","男性")
+        radio.put("1","女性")
+        model.addAttribute("radioGender", radio);
+        insertForm.gender="0"
+        model.addAttribute("insertForm", insertForm);
+
         model.addAttribute("title", "artist name")
         return "form.html"
     }

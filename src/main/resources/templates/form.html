@@ -19,9 +19,19 @@
     <label for="mail">mail:</label>
     <input id="mail" name="mail" type="text" th:value="*{mail}">
     </div>
-    <input type="submit" value="insert">
-</form>
-<p th:text="${insertCompleteMessage}"></p>
-<p th:if="${errorMessage}" th:text="'エラーメッセージ：'+${errorMessage}"></p>
-</body>
-</html>
+    <div>
+<!--        <div th:each="item : ${radioGender}" class="form-check-inline">-->
+<!--            <input type="radio"  class="form-check-input"-->
+<!--                   th:text="${item.value}" th:value="${item.key}" th:field="*{gender}">-->
+<!--        </div>-->
+        <input type="radio"  class="form-check-input" name="sex"
+            text="男性" value="0" th:field="*{gender}">
+        <input type="radio"  class="form-check-input" name="sex"
+               text="女性" value="1" th:field="*{gender}">
+            </div>
+            <input type="submit" value="insert">
+        </form>
+        <p th:text="${insertCompleteMessage}"></p>
+        <p th:if="${errorMessage}" th:text="'エラーメッセージ：'+${errorMessage}"></p>
+        </body>
+        </html>
