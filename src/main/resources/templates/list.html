@@ -7,12 +7,12 @@
 <body>
 <h1 th:text="${title}">title</h1>
 <h1 th:text="${redirectTitle}">title</h1>
-<form method="GET" action="#" th:action="@{/sample/select}" th:object="${searchForm}">
-    <label for="artistName">検索</label>
-    <input id="artistName" name="artistName" type="text" th:value="*{artistName}">
-    <div th:if="${#fields.hasErrors('artistName')}" th:errors="*{artistName}"></div>
-    <input type="submit" value="search">
-</form>
+<!--<form method="GET" action="#" th:action="@{/sample/select}" th:object="${searchForm}">-->
+<!--    <label for="artistName">検索</label>-->
+<!--    <input id="artistName" name="artistName" type="text" th:value="*{artistName}">-->
+<!--&lt;!&ndash;    <div th:if="${#fields.hasErrors('artistName')}" th:errors="*{artistName}"></div>&ndash;&gt;-->
+<!--    <input type="submit" value="search">-->
+<!--</form>-->
 
 <!--<h1 th:text="${title}">title</h1>-->
 <p th:text="${noResultMessage}"></p>

@@ -5,33 +5,24 @@
     <title th:text="${title}"></title>
 </head>
 <body>
-<h1>新規登録</h1>
+<h1>登録</h1>
 <form method="POST" action="#" th:action="@{/sample/insert}" th:object="${insertForm}">
     <div>
-    <label for="title">タイトル</label>
-    <input id="title" name="title" type="text" th:value="*{title}"><span th:text="${message}"></span>
-    <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+        <label for="title">タイトル</label>
+        <input id="title" name="title" type="text" th:value="*{title}">
+<!--        <span th:text="${message}"></span>-->
+        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
     </div>
     <div>
-    <input id="textArea" name="textArea" type="textarea" th:value="*{textArea}">
+        <input id="textArea" name="textArea" type="textarea" th:value="*{textArea}">
+        <span th:if="${#fields.hasErrors('textArea')}" th:errors="*{textArea}"></span>
     </div>
     <div>
-    <label for="mail">mail:</label>
-    <input id="mail" name="mail" type="text" th:value="*{mail}">
+        <label for="mail">mail:</label>
+        <input id="mail" name="mail" type="text" th:value="*{mail}">
+        <span th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"></span>
     </div>
-    <div>
-<!--        <div th:each="item : ${radioGender}" class="form-check-inline">-->
-<!--            <input type="radio"  class="form-check-input"-->
-<!--                   th:text="${item.value}" th:value="${item.key}" th:field="*{gender}">-->
-<!--        </div>-->
-        <input type="radio"  class="form-check-input" name="sex"
-            text="男性" value="0" th:field="*{gender}">
-        <input type="radio"  class="form-check-input" name="sex"
-               text="女性" value="1" th:field="*{gender}">
-            </div>
-            <input type="submit" value="insert">
-        </form>
-        <p th:text="${insertCompleteMessage}"></p>
-        <p th:if="${errorMessage}" th:text="'エラーメッセージ：'+${errorMessage}"></p>
-        </body>
-        </html>
+    <input type="submit" value="insert">
+</form>
+</body>
+</html>

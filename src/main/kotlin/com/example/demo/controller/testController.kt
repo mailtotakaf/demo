@@ -25,14 +25,10 @@ class testController {
     private lateinit var repository: testRepository
 
     @GetMapping("/form")
-    fun form(model: Model,
-             insertForm: InsertForm,
-             @ModelAttribute("insertCompleteMessage") message: String?): String {
-        var radio = mutableMapOf<String,String>()
-        radio.put("0","男性")
-        radio.put("1","女性")
-        model.addAttribute("radioGender", radio);
-        insertForm.gender="0"
+    fun form(
+        model: Model,
+        insertForm: InsertForm
+    ): String {
         model.addAttribute("insertForm", insertForm);
 
         model.addAttribute("title", "artist name")
@@ -40,57 +36,51 @@ class testController {
     }
 
     @GetMapping("/select")
-//    fun select(@Validated searchForm: SearchForm, result: BindingResult, model: Model): String {
     fun select(model: Model): String {
-//        if (result.hasErrors()) {
-//            model.addAttribute("title", "Error Page")
-//            return "form.html"
-//        }
-//        val list = repository.getPosts(searchForm.artistName)
         val list = repository.getPosts("")
         if (list.size != 0) {
             model.addAttribute("postList", list)
         } else {
             model.addAttribute("noResultMessage", "登録はありません。")
         }
+        model.addAttribute("artistName", "")
         return "list.html"
     }
 
     /**
      * 新規登録
-     * insertFormクラスのvalidation anotationに引っかかるとresultにエラーが入る
      */
     @PostMapping("/insert")
     fun insert(
-        @Validated insertForm: InsertForm,
+        @ModelAttribute @Validated insertForm: InsertForm,
         result: BindingResult,
         model: Model,
-        redirectAttributes: RedirectAttributes
+//        redirectAttributes: RedirectAttributes
     ): String {
         if (result.hasErrors()) {
-            model.addAttribute("title", "Error Page")
-            return "form.html"
-        } else if (insertForm.title.isNullOrEmpty()){
-            model.addAttribute("message", "※入力必須項目")
+//            model.addAttribute("title", "Error Page")
             return "form.html"
         }
+//        if (insertForm.title.isNullOrEmpty()) {
+//            model.addAttribute("message", "※入力必須項目")
+//            return "form.html"
+//        }
 
         val post = convertInsertForm(insertForm)
         repository.insertPost(post)
-        //フラッシュスコープ設定、リダイレクト(PRG)
-//        redirectAttributes.addFlashAttribute("insertCompleteMessage", "insert complete")
+
         return "redirect:select"
     }
 
-    @ModelAttribute
-    fun setSearchForm(): SearchForm {
-        return SearchForm()
-    }
-
-    @ModelAttribute
-    fun setInsertForm(): InsertForm {
-        return InsertForm()
-    }
+//    @ModelAttribute
+//    fun setSearchForm(): SearchForm {
+//        return SearchForm()
+//    }
+//
+//    @ModelAttribute
+//    fun setInsertForm(): InsertForm {
+//        return InsertForm()
+//    }
 
     /**
      * インサートFormをPostに詰める
