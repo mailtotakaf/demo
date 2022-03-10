@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.servlet.mvc.support.RedirectAttributes
+import java.util.*
 
 
 @Controller
@@ -29,7 +30,22 @@ class testController {
         model: Model,
         insertForm: InsertForm
     ): String {
-        model.addAttribute("insertForm", insertForm);
+        model.addAttribute("insertForm", insertForm)
+
+        //jsS
+        var syainList = mutableListOf<Syain>()
+        var s1 = Syain()
+        s1.id = 1
+        s1.name = "fuc"
+        syainList.add(s1)
+
+        var s2 = Syain()
+        s1.id = 2
+        s1.name = "mank"
+        syainList.add(s2)
+//        var syainList = Arrays.asList(s1,s2)
+        model.addAttribute("syain", syainList)
+        //jsE
 
         model.addAttribute("title", "artist name")
         return "form.html"
@@ -65,6 +81,15 @@ class testController {
 //            model.addAttribute("message", "※入力必須項目")
 //            return "form.html"
 //        }
+//        //jsS
+//        var s1 = Syain()
+//        s1.id = 1
+//        s1.name = "fuc"
+//        var s2 = Syain()
+//        s1.id = 2
+//        s1.name = "mank"
+//        model.addAttribute("syain", Arrays.asList(s1,s2))
+//        //jsE
 
         val post = convertInsertForm(insertForm)
         repository.insertPost(post)
@@ -96,4 +121,9 @@ class testController {
             return post
         }
     }
+}
+
+class Syain {
+    var id: Int = 0
+    var name: String = ""
 }
